@@ -1,0 +1,263 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Feb 18, 2019 at 03:50 PM
+-- Server version: 10.1.37-MariaDB-cll-lve
+-- PHP Version: 7.2.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `decimald_BSH_Experience_VsnOne`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Bsh_admin_users`
+--
+
+CREATE TABLE `Bsh_admin_users` (
+  `AUser_id` int(11) NOT NULL,
+  `AUser_full_name` varchar(225) NOT NULL,
+  `AUser_surname` varchar(225) NOT NULL,
+  `AUser_email_address` varchar(225) NOT NULL,
+  `AUser_cell_number` varchar(50) NOT NULL,
+  `AUser_password` varchar(225) NOT NULL,
+  `AUser_ip_address` varchar(225) NOT NULL,
+  `AUser_date_reg` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `AUser_old_password` varchar(225) NOT NULL,
+  `SAdmin_FK` int(11) NOT NULL,
+  `Bs_companyFK` int(11) NOT NULL,
+  `AUser_del` int(2) NOT NULL DEFAULT '1',
+  `AUser_status` int(2) NOT NULL DEFAULT '1',
+  `AUser_commit` int(2) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Bsh_admin_users`
+--
+
+INSERT INTO `Bsh_admin_users` (`AUser_id`, `AUser_full_name`, `AUser_surname`, `AUser_email_address`, `AUser_cell_number`, `AUser_password`, `AUser_ip_address`, `AUser_date_reg`, `AUser_old_password`, `SAdmin_FK`, `Bs_companyFK`, `AUser_del`, `AUser_status`, `AUser_commit`) VALUES
+(1, 'Imraan', 'Hoosen', 'imraan@decimalagency.com', '000000000000', '827ccb0eea8a706c4c34a16891f84e7b', '124', '2019-02-15 11:51:12', '', 1, 0, 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Bsh_companies`
+--
+
+CREATE TABLE `Bsh_companies` (
+  `Comp_id` int(11) NOT NULL,
+  `Comp_name` varchar(255) NOT NULL,
+  `Comp_token` varchar(255) NOT NULL,
+  `Comp_date_reg` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `Comp_added_by` int(11) NOT NULL,
+  `Comp_status` int(2) NOT NULL DEFAULT '1',
+  `Comp_del` int(2) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Bsh_companies`
+--
+
+INSERT INTO `Bsh_companies` (`Comp_id`, `Comp_name`, `Comp_token`, `Comp_date_reg`, `Comp_added_by`, `Comp_status`, `Comp_del`) VALUES
+(1, 'Bosch', 'FcoPzkmEQooB5ODFiGfyi4lMjARVG1', '2019-02-14 22:00:00', 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Bsh_events`
+--
+
+CREATE TABLE `Bsh_events` (
+  `BsEv_id` int(11) NOT NULL,
+  `BsEv_name` varchar(400) NOT NULL,
+  `BsEv_description` longtext NOT NULL,
+  `BsEv_date_of_event` date NOT NULL,
+  `BsEv_time` time NOT NULL,
+  `BsEv_diet_specific` varchar(255) NOT NULL,
+  `BsEv_creative` varchar(300) NOT NULL,
+  `BsEv_paid` int(2) DEFAULT '0',
+  `BsEv_no_attendee` int(5) NOT NULL DEFAULT '0',
+  `BsEv_price` varchar(115) NOT NULL,
+  `BsEv_mail_reminderA` int(2) NOT NULL DEFAULT '0',
+  `BsEv_mail_reminderB` int(2) NOT NULL DEFAULT '0',
+  `BsEv_mail_reminderC` int(2) NOT NULL DEFAULT '0',
+  `BsEv_sms_reminderA` int(11) DEFAULT '0',
+  `BsEv_date_reg` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `BsEv_companyIDFK` int(11) NOT NULL,
+  `BsEv_create_ByFK` int(11) NOT NULL,
+  `BsEv_del` int(2) NOT NULL DEFAULT '1',
+  `BsEv_status` int(2) NOT NULL DEFAULT '1',
+  `BsEv_commit` int(2) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Bsh_superAdmin`
+--
+
+CREATE TABLE `Bsh_superAdmin` (
+  `SAdmin_id` int(11) NOT NULL,
+  `SAdmin_full_name` varchar(225) NOT NULL,
+  `SAdmin_surname` varchar(225) NOT NULL,
+  `SAdmin_cell_numbers` varchar(50) NOT NULL DEFAULT '0000000000',
+  `SAdmin_email_address` varchar(225) NOT NULL,
+  `SAdmin_password` varchar(225) NOT NULL,
+  `SAdmin_ip_address` varchar(50) NOT NULL,
+  `SAdmin_reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `SAdmin_status` int(2) NOT NULL DEFAULT '1',
+  `SAdmin_del` int(2) NOT NULL DEFAULT '1',
+  `SAdmin_commit` int(2) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Bsh_superAdmin`
+--
+
+INSERT INTO `Bsh_superAdmin` (`SAdmin_id`, `SAdmin_full_name`, `SAdmin_surname`, `SAdmin_cell_numbers`, `SAdmin_email_address`, `SAdmin_password`, `SAdmin_ip_address`, `SAdmin_reg_date`, `SAdmin_status`, `SAdmin_del`, `SAdmin_commit`) VALUES
+(1, 'Ndalama', 'Maluleke', '000000000000', 'cassius@decimalagency.com', '81dc9bdb52d04dc20036dbd8313ed055', '124', '2019-02-15 10:28:32', 1, 1, 1),
+(2, 'Jaques', 'Illunga', '000000000000', 'jacques@decimalagency.com', '827ccb0eea8a706c4c34a16891f84e7b', '124', '2019-02-15 10:32:39', 1, 1, 1),
+(3, 'Imraan', 'Hoosen', '000000000000', 'imraan@decimalagency.com', '827ccb0eea8a706c4c34a16891f84e7b', '124', '2019-02-15 10:33:01', 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Bsh_users`
+--
+
+CREATE TABLE `Bsh_users` (
+  `User_id` int(11) NOT NULL,
+  `User_full_name` varchar(225) NOT NULL,
+  `User_surname` varchar(225) NOT NULL,
+  `User_cell_number` varchar(50) NOT NULL,
+  `User_email_address` varchar(225) NOT NULL,
+  `User_password` varchar(225) NOT NULL,
+  `User_old_password` varchar(225) NOT NULL,
+  `User_ip_address` varchar(50) NOT NULL,
+  `User_date_reg` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `User_status` int(2) NOT NULL DEFAULT '0',
+  `User_del` int(2) NOT NULL DEFAULT '1',
+  `User_mailer_subscribe` int(2) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Bsh_users`
+--
+
+INSERT INTO `Bsh_users` (`User_id`, `User_full_name`, `User_surname`, `User_cell_number`, `User_email_address`, `User_password`, `User_old_password`, `User_ip_address`, `User_date_reg`, `User_status`, `User_del`, `User_mailer_subscribe`) VALUES
+(1, 'Imraan', 'Hoosen', '000000000000', 'imraan@decimalagency.com', 'c4ca4238a0b923820dcc509a6f75849b', 'c81e728d9d4c2f636f067f89cc14862c', '124', '2019-02-15 12:16:05', 1, 1, 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Bsh_admin_users`
+--
+ALTER TABLE `Bsh_admin_users`
+  ADD PRIMARY KEY (`AUser_id`),
+  ADD KEY `SAForeignKey` (`SAdmin_FK`),
+  ADD KEY `Bs_companyFK` (`Bs_companyFK`);
+
+--
+-- Indexes for table `Bsh_companies`
+--
+ALTER TABLE `Bsh_companies`
+  ADD PRIMARY KEY (`Comp_id`),
+  ADD KEY `Comp_added_by` (`Comp_added_by`);
+
+--
+-- Indexes for table `Bsh_events`
+--
+ALTER TABLE `Bsh_events`
+  ADD PRIMARY KEY (`BsEv_id`),
+  ADD KEY `BsEv_companyIDFK` (`BsEv_companyIDFK`),
+  ADD KEY `BsEv_create_ByFK` (`BsEv_create_ByFK`);
+
+--
+-- Indexes for table `Bsh_superAdmin`
+--
+ALTER TABLE `Bsh_superAdmin`
+  ADD PRIMARY KEY (`SAdmin_id`);
+
+--
+-- Indexes for table `Bsh_users`
+--
+ALTER TABLE `Bsh_users`
+  ADD PRIMARY KEY (`User_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `Bsh_admin_users`
+--
+ALTER TABLE `Bsh_admin_users`
+  MODIFY `AUser_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `Bsh_companies`
+--
+ALTER TABLE `Bsh_companies`
+  MODIFY `Comp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `Bsh_events`
+--
+ALTER TABLE `Bsh_events`
+  MODIFY `BsEv_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Bsh_superAdmin`
+--
+ALTER TABLE `Bsh_superAdmin`
+  MODIFY `SAdmin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `Bsh_users`
+--
+ALTER TABLE `Bsh_users`
+  MODIFY `User_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `Bsh_admin_users`
+--
+ALTER TABLE `Bsh_admin_users`
+  ADD CONSTRAINT `Bsh_admin_users_ibfk_1` FOREIGN KEY (`SAdmin_FK`) REFERENCES `Bsh_superAdmin` (`SAdmin_id`);
+
+--
+-- Constraints for table `Bsh_companies`
+--
+ALTER TABLE `Bsh_companies`
+  ADD CONSTRAINT `Bsh_companies_ibfk_1` FOREIGN KEY (`Comp_added_by`) REFERENCES `Bsh_superAdmin` (`SAdmin_id`);
+
+--
+-- Constraints for table `Bsh_events`
+--
+ALTER TABLE `Bsh_events`
+  ADD CONSTRAINT `Bsh_events_ibfk_1` FOREIGN KEY (`BsEv_create_ByFK`) REFERENCES `Bsh_admin_users` (`AUser_id`),
+  ADD CONSTRAINT `Bsh_events_ibfk_2` FOREIGN KEY (`BsEv_companyIDFK`) REFERENCES `Bsh_companies` (`Comp_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
