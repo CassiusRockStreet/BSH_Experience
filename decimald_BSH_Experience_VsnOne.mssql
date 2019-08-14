@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 18, 2019 at 03:50 PM
--- Server version: 10.1.37-MariaDB-cll-lve
+-- Generation Time: Aug 14, 2019 at 07:26 AM
+-- Server version: 10.1.41-MariaDB-cll-lve
 -- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -226,7 +226,7 @@ ALTER TABLE `Bsh_events`
 -- AUTO_INCREMENT for table `Bsh_superAdmin`
 --
 ALTER TABLE `Bsh_superAdmin`
-  MODIFY `SAdmin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `SAdmin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `Bsh_users`
